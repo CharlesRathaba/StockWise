@@ -1,0 +1,12 @@
+@tanstack/react-query
+react-hook-form
+tailwindcss
+postcss
+autoprefixer
+socket.io-client
+@googlemaps/js-api-loader
+axios
+@radix-ui/react-icons
+class-variance-authority
+clsx
+tailwind-merge

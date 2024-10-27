@@ -1,7 +1,12 @@
 import React from 'react';
 import { ArrowRight, Store, TrendingUp, Truck, ShieldCheck } from 'lucide-react';
 
-const LandingPage = () => {
+// Define the props type for the LandingPage component
+interface LandingPageProps {
+  onLogin: () => void; // Define the type of onLogin as a function
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -12,7 +17,7 @@ const LandingPage = () => {
               <span className="text-2xl font-bold text-teal-600">StockWise SA</span>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="text-gray-700 hover:text-teal-600 font-medium">
+              <button onClick={onLogin} className="text-gray-700 hover:text-teal-600 font-medium">
                 Login
               </button>
               <button className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">

@@ -1,33 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginForm from './components/auth/LoginFormCustomer';
 import LandingPage from './components/landing/LandingPage';
 import DashboardLayout from './components/dashboard/DashboardLayout';
-import LoginForm from './components/auth/LoginForm';
 import OrderManagement from './components/dashboard/OrderManagement';
 import ProductCatalog from './components/dashboard/ProductCatalog';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    // Perform login actions here, then set `isLoggedIn` to true
     setIsLoggedIn(true);
   };
 
   return (
-    <div className="App">
-      {/* Conditional rendering based on login status */}
-      {!isLoggedIn ? (
-        <LandingPage onLogin={handleLogin} />
-      ) : (
-        <DashboardLayout>
-          {/* Include other components that should be shown when logged in */}
-          <ProductCatalog />
-          <OrderManagement />
-        </DashboardLayout>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LandingPage onLogin={handleLogin} />} />
+          <Route path="/customer-login" element={<LoginForm onLogin={handleLogin} />} />
+          <Route
+            path="/dashboard"
+            element={
+              isLoggedIn ? (
+                <DashboardLayout>
+                  {/* Include other components that should be shown when logged in */}
+                  <ProductCatalog />
+                  <OrderManagement />
+                </DashboardLayout>
+              ) : (
+                <LandingPage onLogin={handleLogin} />
+              )
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

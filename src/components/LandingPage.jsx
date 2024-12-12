@@ -1,9 +1,11 @@
-import React from 'react';
-import { ArrowRight, Store, TrendingUp, Truck, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Store, TrendingUp, Truck, ShieldCheck, Menu } from 'lucide-react';
 
 const stockwiseLogo = '/stockwise-logo.png'
 
 const LandingPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -15,14 +17,27 @@ const LandingPage = () => {
               <span className="text-2xl font-bold text-blue-600">StockWise</span>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="text-gray-700 hover:text-blue-600 font-medium">
+              <button className="text-gray-700 hover:text-blue-600 font-medium hidden md:block">
                 Login
               </button>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hidden md:block">
                 Register Business
+              </button>
+              <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <Menu className="h-6 w-6 text-gray-700" />
               </button>
             </div>
           </div>
+          {isMenuOpen && (
+            <div className="md:hidden">
+              <button className="block w-full text-left text-gray-700 hover:text-blue-600 font-medium py-2">
+                Login
+              </button>
+              <button className="block w-full text-left bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Register Business
+              </button>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -160,11 +175,11 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="bg-white border-t">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <div className="text-gray-500 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-500 text-sm mb-4 md:mb-0">
               © 2024 StockWise SA. All rights reserved.
             </div>
-            <div className="flex space-x-6">
+            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
               <a href="#" className="text-gray-500 hover:text-gray-900">About</a>
               <a href="#" className="text-gray-500 hover:text-gray-900">Contact</a>
               <a href="#" className="text-gray-500 hover:text-gray-900">Privacy</a>
